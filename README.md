@@ -17,7 +17,7 @@ For more information and questions please contact Cody Dumont cody@melcara.com
 - 2026-02-10  Local development: Strawberry Perl and required CPAN modules
   installed for developer convenience and local perl -c checks.
 
-## High-level policies (kalvinparker)
+## Todo by kalvinparker
 
 - **License:** Ensure a LICENSE file is present and matches project intent.
 - **Contributing:** Open pull requests from topic branches; include a clear
@@ -25,6 +25,5 @@ For more information and questions please contact Cody Dumont cody@melcara.com
 - **CI required:** All PRs must pass CI (lint/tests) before merging.
 - **Commit messages:** Use concise, conventional-style commit messages
   (e.g. eat:, ix:, chore:).
-- **Reviews:** At least one approving review required before merge.
 - **Security:** Report vulnerabilities privately to the repository owner or
   the email listed in the repo metadata.
