@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  perl-syntax:
+    name: Perl syntax check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: '5.36'
+      - name: Install cpanminus (for dependency installs)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cpanminus
+      - name: Install Perl dependencies
+        run: |
+          set -e
+          cpanm --notest XML::TreePP Math::Round Excel::Writer::XLSX Data::Table Excel::Writer::XLSX::Chart Getopt::Std || true
+      - name: Verify Perl modules
+        run: |
+          set -e
+          perl -MXML::TreePP -e 'print "XML::TreePP OK\n"'
+          perl -MMath::Round -e 'print "Math::Round OK\n"'
+          perl -MExcel::Writer::XLSX -e 'print "Excel::Writer::XLSX OK\n"'
+      - name: Check Perl syntax
+        run: |
+          set -e
+          if [ -f parse_nessus_xml.v24.pl ]; then
+            perl -c parse_nessus_xml.v24.pl
+          else
+            echo "No Perl scripts found to check."
+          fi
