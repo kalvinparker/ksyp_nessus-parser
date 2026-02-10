@@ -209,9 +209,9 @@ elsif($opt{"d"} && $opt{"f"}){
 elsif($opt{"d"}){
     $dir = $opt{"d"};
     print "The target directory is \"$dir\"\.\n";
-    opendir DIR, $dir;
-    my @files = readdir(DIR);
-    closedir DIR;
+    opendir my $dh, $dir or die "Cannot opendir '$dir': $!";
+    my @files = readdir $dh;
+    closedir $dh;
     my @xml = grep {$_ =~ /((xml)|(XML)|(nessus))$/} @files;
     #@xml_files = grep {$_ !~ /^\./} @xml_files;
     my @verified;
@@ -220,11 +220,11 @@ elsif($opt{"d"}){
     
     foreach (@xml){
         my $f = "$dir/$_";
-        open FILE, $f;
-        my $tmp_data = <FILE>;
-        close FILE;
-        if($tmp_data =~ /(NessusClientData_v2)/m){print "File $_ is a Valid Nessus Ver2 format and will be parsed.\n\n";push @verified,$f}
-        else{print "This file \"$_\" is not using the Nessus version 2 format, and will NOT be parsed!!!\n\n";}
+        open my $fh, '<', $f or die "Can't open $f: $!";
+        my $tmp_data = <$fh>;
+        close $fh;
+        if($tmp_data =~ /(NessusClientData_v2)/m){ print "File $_ is a Valid Nessus Ver2 format and will be parsed.\n\n"; push @verified, $f }
+        else { print "This file \"$_\" is not using the Nessus version 2 format, and will NOT be parsed!!!\n\n"; }
     }
     # end of foreach (@xml)
     $/ = $eol_marker;
@@ -235,9 +235,9 @@ elsif($opt{"f"}){
     print "The target file is \"$target_file\"\.\n";
     my $eol_marker = $/;
     undef $/;
-    open FILE, $target_file;
-    my $tmp_data = <FILE>;
-    close FILE;
+    open my $fh, '<', $target_file or die "Can't open $target_file: $!";
+    my $tmp_data = <$fh>;
+    close $fh;
     if($tmp_data =~ /(NessusClientData_v2)/m){
         print "File $target_file is a Valid Nessus Ver2 format and will be parsed.\n\n";
         my @dirs = split /\\|\//,$target_file;
@@ -258,9 +258,9 @@ else{
 if($opt{"r"}){
     my $recast_file = $opt{"r"};
     print "The recast option is selected, the recast definition file is \"$recast_file\"\.\nPlease note all the following Plugin ID's will have thier severity changed accordingly.\n\n";
-    open FILE, $recast_file or die "Can't open the $recast_file file\n";
-    my @tmp_data = <FILE>;
-    close FILE;
+    open my $fh, '<', $recast_file or die "Can't open the $recast_file file\n";
+    my @tmp_data = <$fh>;
+    close $fh;
     chomp @tmp_data;
     print "PLUGIN ID\tOLD SEV\tNEW SEV\n";
     foreach my $p (@tmp_data){

@@ -30,6 +30,19 @@ jobs:
           perl -MXML::TreePP -e 'print "XML::TreePP OK\n"'
           perl -MMath::Round -e 'print "Math::Round OK\n"'
           perl -MExcel::Writer::XLSX -e 'print "Excel::Writer::XLSX OK\n"'
+      - name: Install Perl::Critic
+        run: |
+          set -e
+          cpanm --notest Perl::Critic
+      - name: Run Perl::Critic
+        run: |
+          set -e
+          FILES=$(git ls-files '*.pl' '*.pm')
+          if [ -n "$FILES" ]; then
+            echo "$FILES" | xargs perlcritic
+          else
+            echo "No Perl files to lint."
+          fi
       - name: Check Perl syntax
         run: |
           set -e
