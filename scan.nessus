@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NessusClientData_v2>
+  <Policy>
+    <policyName>Mock Policy - Internal Assessment</policyName>
+    <policyComments>Mock policy used for functional testing only</policyComments>
+    <policyFamilyTags>
+      <family>Authentication</family>
+      <family>Configuration</family>
+      <family>Network Services</family>
+    </policyFamilyTags>
+  </Policy>
+
+  <Report name="Mock Scan Report">
+    <ReportHost name="host-001.example.local">
+      <HostProperties>
+        <tag name="HOST_END_TIME">2026-02-10T12:00:00Z</tag>
+        <tag name="HOST_START_TIME">2026-02-10T11:45:00Z</tag>
+        <tag name="operating-system">MockOS 1.0</tag>
+        <tag name="mac-address">00:11:22:33:44:55</tag>
+      </HostProperties>
+
+      <!-- Summary data (safe mock values) -->
+      <ReportItem pluginName="Summary - Mock" pluginFamily="Summary" pluginID="99999" severity="0" port="0" protocol="tcp">
+        <description>Summary of the mock scan results (no sensitive data).</description>
+        <output>
+          Total Hosts: 1\nTotal Findings: 3\nHigh: 0\nMedium: 1\nLow: 2
+        </output>
+      </ReportItem>
+
+      <!-- Policy plugin family example -->
+      <ReportItem pluginName="Weak Password Policy Detected (mock)" pluginFamily="Authentication" pluginID="10001" severity="2" port="0" protocol="tcp">
+        <description>This mock finding represents a policy-family result (Authentication).</description>
+        <solution>Review password policy and ensure minimum complexity is enforced.</solution>
+        <output>Account policy: minimum length 6 (mock value)</output>
+        <see_also>https://example.com/mock-guidance</see_also>
+      </ReportItem>
+
+      <!-- User account reporting example -->
+      <ReportItem pluginName="Local User Accounts (mock report)" pluginFamily="Configuration" pluginID="20002" severity="1" port="0" protocol="tcp">
+        <description>Mock user account enumeration for testing user account reporting features.</description>
+        <output>
+          User: `mock_admin`\nStatus: Enabled\nLastLogin: 2026-01-01T00:00:00Z\nNotes: sample, non-production account
+        </output>
+      </ReportItem>
+
+      <!-- Network service example -->
+      <ReportItem pluginName="Open Port (mock)" pluginFamily="Network Services" pluginID="30003" severity="1" port="22" protocol="tcp">
+        <description>Mock open service used to exercise port scanning and service reporting.</description>
+        <output>Service: ssh (mock) - banner suppressed</output>
+      </ReportItem>
+
+    </ReportHost>
+
+    <!-- Another host with different mock data -->
+    <ReportHost name="host-002.example.local">
+      <HostProperties>
+        <tag name="HOST_END_TIME">2026-02-10T12:05:00Z</tag>
+        <tag name="HOST_START_TIME">2026-02-10T11:50:00Z</tag>
+        <tag name="operating-system">MockOS 2.0</tag>
+      </HostProperties>
+
+      <ReportItem pluginName="Policy Family - Configuration (mock)" pluginFamily="Configuration" pluginID="10002" severity="0" port="0" protocol="tcp">
+        <description>A mock non-critical configuration check.</description>
+        <output>Configuration check: pass (mock)</output>
+      </ReportItem>
+
+      <ReportItem pluginName="Local Users Found (mock)" pluginFamily="Configuration" pluginID="20003" severity="1" port="0" protocol="tcp">
+        <description>Another mock user account entry for testing.</description>
+        <output>
+          User: `backup_user`\nStatus: Disabled\nNotes: sample account
+        </output>
+      </ReportItem>
+
+    </ReportHost>
+
+  </Report>
+</NessusClientData_v2>
