@@ -1218,7 +1218,7 @@ sub normalizeHostData {
             elsif($h_report->{'-pluginFamily'} =~ /Windows/){push @windows, $h_report;}
             elsif($h_report->{'-pluginFamily'} =~ /Incident Response/){push @IncidentResponse, $h_report;}
             elsif($h_report->{'-pluginFamily'} eq ""){push @port_scan, $h_report;}
-            else{ print "\nThere is a new plugin family added, it is $h_report->{'-pluginFamily'}\n";exit;}
+            else{ push @general, $h_report; }
             
             if ($h_report->{cvss_base_score} || $h_report->{cvss_vector} || $h_report->{cvss_temporal_score}) {
                 if (not defined $cvss_score{$host->{"host-ip"}}) {

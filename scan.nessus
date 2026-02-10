@@ -20,7 +20,7 @@
       </HostProperties>
 
       <!-- Summary data (safe mock values) -->
-      <ReportItem pluginName="Summary - Mock" pluginFamily="Summary" pluginID="99999" severity="0" port="0" protocol="tcp">
+      <ReportItem pluginName="Summary - Mock" pluginFamily="General" pluginID="99999" severity="0" port="0" protocol="tcp">
         <description>Summary of the mock scan results (no sensitive data).</description>
         <output>
           Total Hosts: 1\nTotal Findings: 3\nHigh: 0\nMedium: 1\nLow: 2
@@ -28,7 +28,7 @@
       </ReportItem>
 
       <!-- Policy plugin family example -->
-      <ReportItem pluginName="Weak Password Policy Detected (mock)" pluginFamily="Authentication" pluginID="10001" severity="2" port="0" protocol="tcp">
+      <ReportItem pluginName="Weak Password Policy Detected (mock)" pluginFamily="General" pluginID="10001" severity="2" port="0" protocol="tcp">
         <description>This mock finding represents a policy-family result (Authentication).</description>
         <solution>Review password policy and ensure minimum complexity is enforced.</solution>
         <output>Account policy: minimum length 6 (mock value)</output>
@@ -36,7 +36,7 @@
       </ReportItem>
 
       <!-- User account reporting example -->
-      <ReportItem pluginName="Local User Accounts (mock report)" pluginFamily="Configuration" pluginID="20002" severity="1" port="0" protocol="tcp">
+      <ReportItem pluginName="Local User Accounts (mock report)" pluginFamily="General" pluginID="20002" severity="1" port="0" protocol="tcp">
         <description>Mock user account enumeration for testing user account reporting features.</description>
         <output>
           User: `mock_admin`\nStatus: Enabled\nLastLogin: 2026-01-01T00:00:00Z\nNotes: sample, non-production account
@@ -44,7 +44,7 @@
       </ReportItem>
 
       <!-- Network service example -->
-      <ReportItem pluginName="Open Port (mock)" pluginFamily="Network Services" pluginID="30003" severity="1" port="22" protocol="tcp">
+      <ReportItem pluginName="Open Port (mock)" pluginFamily="General" pluginID="30003" severity="1" port="22" protocol="tcp">
         <description>Mock open service used to exercise port scanning and service reporting.</description>
         <output>Service: ssh (mock) - banner suppressed</output>
       </ReportItem>
