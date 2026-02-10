@@ -10,3 +10,21 @@ This is a program to parse a series of Nessus XMLv2 files into a XLSX file.  The
 This script has been designed and maitained by Melcara.
 
 For more information and questions please contact Cody Dumont cody@melcara.com
+## Recent changes
+
+- 2026-02-10  Added CI workflow to run Perl syntax checks and install Perl
+  dependencies with cpanm (branch: ci/add-github-actions, PR #1).
+- 2026-02-10  Local development: Strawberry Perl and required CPAN modules
+  installed for developer convenience and local perl -c checks.
+
+## High-level policies (kalvinparker)
+
+- **License:** Ensure a LICENSE file is present and matches project intent.
+- **Contributing:** Open pull requests from topic branches; include a clear
+  description and tests for new behavior.
+- **CI required:** All PRs must pass CI (lint/tests) before merging.
+- **Commit messages:** Use concise, conventional-style commit messages
+  (e.g. eat:, ix:, chore:).
+- **Reviews:** At least one approving review required before merge.
+- **Security:** Report vulnerabilities privately to the repository owner or
+  the email listed in the repo metadata.
