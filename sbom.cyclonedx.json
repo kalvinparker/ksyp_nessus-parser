@@ -1,0 +1,43 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-02-10T23:50:00Z",
+    "tools": [
+      { "vendor": "local", "name": "ksyp_nessus-parser-sbom-generator", "version": "0.1" }
+    ],
+    "component": {
+      "type": "application",
+      "name": "ksyp_nessus-parser",
+      "version": "bc6bbeb",
+      "purl": "pkg:git/kalvinparker/ksyp_nessus-parser@bc6bbeb"
+    }
+  },
+  "components": [
+    { "type": "library", "name": "XML::TreePP", "purl": "pkg:cpan/XML-TreePP" },
+    { "type": "library", "name": "Data::Dumper", "purl": "pkg:cpan/Data-Dumper" },
+    { "type": "library", "name": "Math::Round", "purl": "pkg:cpan/Math-Round" },
+    { "type": "library", "name": "Excel::Writer::XLSX", "purl": "pkg:cpan/Excel-Writer-XLSX" },
+    { "type": "library", "name": "Excel::Writer::XLSX::Chart", "purl": "pkg:cpan/Excel-Writer-XLSX-Chart" },
+    { "type": "library", "name": "Data::Table", "purl": "pkg:cpan/Data-Table" },
+    { "type": "library", "name": "Getopt::Std", "purl": "pkg:cpan/Getopt-Std" },
+    { "type": "tool", "name": "Perl::Critic", "purl": "pkg:cpan/Perl-Critic", "scope": "development" },
+
+    { "type": "file", "name": "parse_nessus_xml.v24.pl", "purl": "pkg:generic/parse_nessus_xml.v24.pl" },
+    { "type": "file", "name": "scan.nessus", "purl": "pkg:generic/scan.nessus" },
+    { "type": "file", "name": ".github/workflows/ci.yml", "purl": "pkg:generic/.github/workflows/ci.yml" }
+  ],
+  "dependencies": [
+    { "ref": "pkg:git/kalvinparker/ksyp_nessus-parser@bc6bbeb", "dependsOn": [
+      "pkg:cpan/XML-TreePP",
+      "pkg:cpan/Data-Dumper",
+      "pkg:cpan/Math-Round",
+      "pkg:cpan/Excel-Writer-XLSX",
+      "pkg:cpan/Excel-Writer-XLSX-Chart",
+      "pkg:cpan/Data-Table",
+      "pkg:cpan/Getopt-Std",
+      "pkg:cpan/Perl-Critic"
+    ] }
+  ]
+}
